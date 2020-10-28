@@ -1,0 +1,115 @@
+
+{% macro FSM4S_controller(name='x')%}
+<form id="rrc-form-Bx00-{{name}}"></form>
+<form id="rrc-form-B0x0-{{name}}"></form>
+<form id="rrc-form-B00x-{{name}}"></form>
+<input data-rrc="{{name}}-Bx00" form="rrc-form-Bx00-{{name}}" style="display:none" type="radio" name="rrc-Bx00-{{name}}" checked="checked">
+<input data-rrc="{{name}}-B0x0" form="rrc-form-B0x0-{{name}}" style="display:none" type="radio" name="rrc-B0x0-{{name}}" checked="checked">
+<input data-rrc="{{name}}-B00x" form="rrc-form-B00x-{{name}}" style="display:none" type="radio" name="rrc-B00x-{{name}}" checked="checked">
+{% endmacro %}
+
+{%macro showM000_A1(name='x')%} M001-{{name}} M010-{{name}} M100-{{name}} M101-{{name}} M110-{{name}} M011-{{name}} M111-{{name}} {%endmacro%}
+{%macro showM001_D1(name='x')%} M000-{{name}} M010-{{name}} M100-{{name}} M101-{{name}} M110-{{name}} M011-{{name}} M111-{{name}} {%endmacro%}
+{%macro showM010_C1(name='x') %} M001-{{name}} M000-{{name}} M100-{{name}} M101-{{name}} M110-{{name}} M011-{{name}} M111-{{name}} {%endmacro%}
+{%macro showM100_B1(name='x') %} M001-{{name}} M010-{{name}} M000-{{name}} M101-{{name}} M110-{{name}} M011-{{name}} M111-{{name}} {%endmacro%}
+{%macro showM110_D(name='x') %} M001-{{name}} M010-{{name}} M100-{{name}} M101-{{name}} M000-{{name}} M011-{{name}} M111-{{name}} {%endmacro%}
+{%macro showM011_B(name='x') %} M001-{{name}} M010-{{name}} M100-{{name}} M101-{{name}} M110-{{name}} M000-{{name}} M111-{{name}} {%endmacro%}
+{%macro showM101_C(name='x') %} M001-{{name}} M010-{{name}} M100-{{name}} M000-{{name}} M110-{{name}} M011-{{name}} M111-{{name}} {%endmacro%}
+{%macro showM111_A(name='x') %} M001-{{name}} M010-{{name}} M100-{{name}} M101-{{name}} M110-{{name}} M011-{{name}} M000-{{name}} {%endmacro%}
+{%macro showA(name='x') %} M001-{{name}} M010-{{name}} M100-{{name}} M101-{{name}} M110-{{name}} M011-{{name}} {%endmacro%}
+{%macro showB(name='x') %} M000-{{name}} M010-{{name}} M101-{{name}} M110-{{name}} M001-{{name}} M111-{{name}} {%endmacro%}
+{%macro showC(name='x') %} M001-{{name}} M000-{{name}} M100-{{name}} M110-{{name}} M011-{{name}} M111-{{name}} {%endmacro%}
+{%macro showD(name='x') %} M010-{{name}} M000-{{name}} M101-{{name}} M100-{{name}} M011-{{name}} M111-{{name}} {%endmacro%}
+
+{%macro AtoB(name='x',text="B",class="", classBtn="",classLbl="",classInp="")%}
+<label class=" {{class}} {{classLbl}} {{showM111_A()}} "><input class=" {{classInp}} " form="rrc-form-Bx00-{{name}}" type="radio" name="rrc-Bx00-{{name}}" />{{text}}</label>
+<button class=" {{class}} {{classBtn}} {{showM000_A1()}} " type="reset" form="rrc-form-Bx00-{{name}}">{{text}}</button>
+{%endmacro%}
+{%macro AtoC(name='x',text="C",class="", classBtn="",classLbl="",classInp="")%}
+<label class=" {{class}} {{classLbl}} {{showM111_A()}} "><input class=" {{classInp}} " form="rrc-form-B0x0-{{name}}" type="radio" name="rrc-B0x0-{{name}}" />{{text}}</label>
+<button class=" {{class}} {{classBtn}} {{showM000_A1()}} " type="reset" form="rrc-form-B0x0-{{name}}">{{text}}</button>
+{%endmacro%}
+{%macro AtoD(name='x',text="D",class="", classBtn="",classLbl="",classInp="")%}
+<label class=" {{class}} {{classLbl}} {{showM111_A()}} "><input  class=" {{classInp}} " form="rrc-form-B00x-{{name}}" type="radio" name="rrc-B00x-{{name}}" />{{text}}</label>
+<button class=" {{class}} {{classBtn}} {{showM000_A1()}} " type="reset" form="rrc-form-B00x-{{name}}">{{text}}</button>
+{%endmacro%}
+{%macro BtoA(name='x',text="A",class="", classBtn="",classLbl="",classInp="")%}
+<label class=" {{class}} {{classLbl}} {{showM100_B1()}} "><input class=" {{classInp}} " form="rrc-form-Bx00-{{name}}" type="radio" name="rrc-Bx00-{{name}}" />{{text}}</label>
+<button class=" {{class}} {{classBtn}} {{showM011_B()}} " type="reset" form="rrc-form-Bx00-{{name}}">{{text}}</button>
+{%endmacro%}
+{%macro BtoC(name='x',text="C",class="", classBtn="",classLbl="",classInp="")%}
+<label class=" {{class}} {{classLbl}} {{showM011_B()}} "><input class=" {{classInp}} " form="rrc-form-B00x-{{name}}" type="radio" name="rrc-B00x-{{name}}" />{{text}}</label>
+<button class=" {{class}} {{classBtn}} {{showM100_B1()}} " type="reset" form="rrc-form-B00x-{{name}}">{{text}}</button>
+{%endmacro%}
+{%macro BtoD(name='x',text="D",class="", classBtn="",classLbl="",classInp="")%}
+<label class=" {{class}} {{classLbl}} {{showM011_B()}} "><input class=" {{classInp}} " form="rrc-form-B0x0-{{name}}" type="radio" name="rrc-B0x0-{{name}}" />{{text}}</label>
+<button class=" {{class}} {{classBtn}} {{showM100_B1()}} " type="reset" form="rrc-form-B0x0-{{name}}">{{text}}</button>
+{%endmacro%}
+{%macro CtoA(name='x',text="A",class="", classBtn="",classLbl="",classInp="")%}
+<label class=" {{class}} {{classLbl}} {{showM010_C1()}} "><input class=" {{classInp}} " form="rrc-form-B0x0-{{name}}" type="radio" name="rrc-B0x0-{{name}}" />{{text}}</label>
+<button class=" {{class}} {{classBtn}} {{showM101_C()}} " type="reset" form="rrc-form-B0x0-{{name}}">{{text}}</button>
+{%endmacro%}
+{%macro CtoB(name='x',text="B",class="", classBtn="",classLbl="",classInp="")%}
+<label class=" {{class}} {{classLbl}} {{showM101_C()}} "><input class=" {{classInp}} " form="rrc-form-B00x-{{name}}" type="radio" name="rrc-B00x-{{name}}" />{{text}}</label>
+<button class=" {{class}} {{classBtn}} {{showM010_C1()}} " type="reset" form="rrc-form-B00x-{{name}}">{{text}}</button>
+{%endmacro%}
+{%macro CtoD(name='x',text="D",class="", classBtn="",classLbl="",classInp="")%}
+<label class=" {{class}} {{classLbl}} {{showM101_C()}} "><input class=" {{classInp}} " form="rrc-form-Bx00-{{name}}" type="radio" name="rrc-Bx00-{{name}}" />{{text}}</label>
+<button class=" {{class}} {{classBtn}} {{showM010_C1()}} " type="reset" form="rrc-form-Bx00-{{name}}">{{text}}</button>
+{%endmacro%}
+{%macro DtoA(name='x',text="A",class="", classBtn="",classLbl="",classInp="")%}
+<label class=" {{class}} {{classLbl}} {{showM001_D1()}} "><input class=" {{classInp}} " form="rrc-form-B00x-{{name}}" type="radio" name="rrc-B00x-{{name}}" />{{text}}</label>
+<button class=" {{class}} {{classBtn}} {{showM110_D()}} " type="reset" form="rrc-form-B00x-{{name}}">{{text}}</button>
+{%endmacro%}
+{%macro DtoB(name='x',text="B",class="", classBtn="",classLbl="",classInp="")%}
+<label class=" {{class}} {{classLbl}} {{showM110_D()}} "><input class=" {{classInp}} " form="rrc-form-B0x0-{{name}}" type="radio" name="rrc-B0x0-{{name}}" />{{text}}</label>
+<button class=" {{class}} {{classBtn}} {{showM001_D1()}} " type="reset" form="rrc-form-B0x0-{{name}}">{{text}}</button>
+{%endmacro%}
+{%macro DtoC(name='x',text="C",class="", classBtn="",classLbl="",classInp="")%}
+<label class=" {{class}} {{classLbl}} {{showM110_D()}} "><input class=" {{classInp}} " form="rrc-form-Bx00-{{name}}" type="radio" name="rrc-Bx00-{{name}}" />{{text}}</label>
+<button class=" {{class}} {{classBtn}} {{showM001_D1()}} " type="reset" form="rrc-form-Bx00-{{name}}">{{text}}</button>
+{%endmacro%}
+
+{%macro FSM4S_css(name='x')%}
+<style type="text/css">
+  /* Hide M000 (A1) */
+  input[data-rrc="{{name}}-Bx00"]:not(:checked)~input[data-rrc="{{name}}-B0x0"]:not(:checked)~input[data-rrc="{{name}}-B00x"]:not(:checked)~* .M000-{{name}}  {
+    display: none !important;
+  }
+
+  /* Hide M100 (B1) */
+  input[data-rrc="{{name}}-Bx00"]:checked~input[data-rrc="{{name}}-B0x0"]:not(:checked)~input[data-rrc="{{name}}-B00x"]:not(:checked)~* .M100-{{name}} {
+    display: none !important;
+  }
+
+  /* Hide M010 (C1) */
+  input[data-rrc="{{name}}-Bx00"]:not(:checked)~input[data-rrc="{{name}}-B0x0"]:checked~input[data-rrc="{{name}}-B00x"]:not(:checked)~* .M010-{{name}} {
+    display: none !important;
+  }
+
+  /* Hide M001 (D1) */
+  input[data-rrc="{{name}}-Bx00"]:not(:checked)~input[data-rrc="{{name}}-B0x0"]:not(:checked)~input[data-rrc="{{name}}-B00x"]:checked~* .M001-{{name}}  {
+    display: none !important;
+  }
+
+  /* Hide M101 (C) */
+  input[data-rrc="{{name}}-Bx00"]:checked~input[data-rrc="{{name}}-B0x0"]:not(:checked)~input[data-rrc="{{name}}-B00x"]:checked~* .M101-{{name}}    {
+    display: none !important;
+  }
+
+  /* Hide M110 (D) */
+  input[data-rrc="{{name}}-Bx00"]:checked~input[data-rrc="{{name}}-B0x0"]:checked~input[data-rrc="{{name}}-B00x"]:not(:checked)~* .M110-{{name}} {
+    display: none !important;
+  }
+
+  /* Hide M011 (B) */
+  input[data-rrc="{{name}}-Bx00"]:not(:checked)~input[data-rrc="{{name}}-B0x0"]:checked~input[data-rrc="{{name}}-B00x"]:checked~* .M011-{{name}} {
+    display: none !important;
+  }
+
+  /* Hide M111 (A) */
+  input[data-rrc="{{name}}-Bx00"]:checked~input[data-rrc="{{name}}-B0x0"]:checked~input[data-rrc="{{name}}-B00x"]:checked~* .M111-{{name}}  {
+    display: none !important;
+  }
+</style>
+{%endmacro%}
