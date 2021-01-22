@@ -1,5 +1,5 @@
 # radio-reset-controller
-reusable state machine component without javascript
+Reusable state machine component without javascript
 
 For more details see:
 
